@@ -7,7 +7,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import React, { useRef, useEffect } from 'react';
 
 
-
+//modificacion
 export default function ListCrietriosPage(){
     const criterios =  SelectorCriterio()
     console.log(criterios)
