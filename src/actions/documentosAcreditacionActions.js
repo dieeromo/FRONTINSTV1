@@ -1,21 +1,21 @@
 import {
-DOC_ACREDITACION_CREATE_REQUEST,
- DOC_ACREDITACION_CREATE_SUCCESS,
- DOC_ACREDITACION_CREATE_FAIL,
+    DOC_ACREDITACION_CREATE_REQUEST,
+    DOC_ACREDITACION_CREATE_SUCCESS,
+    DOC_ACREDITACION_CREATE_FAIL,
 
 
 
- DOC_ACREDITACION_FILTER_LIST_REQUEST,
- DOC_ACREDITACION_FILTER_LIST_SUCCESS,
- DOC_ACREDITACION_FILTER_LIST_FAIL,
+    DOC_ACREDITACION_FILTER_LIST_REQUEST,
+    DOC_ACREDITACION_FILTER_LIST_SUCCESS,
+    DOC_ACREDITACION_FILTER_LIST_FAIL,
 
- DOC_ACREDITACION_LIST_REQUEST,
- DOC_ACREDITACION_LIST_SUCCESS,
- DOC_ACREDITACION_LIST_FAIL,
- 
+    DOC_ACREDITACION_LIST_REQUEST,
+    DOC_ACREDITACION_LIST_SUCCESS,
+    DOC_ACREDITACION_LIST_FAIL,
 
-} from '../constants/documentosAcreditacion' 
- import {RUTA_SERVIDOR} from '../ApiRoutes'
+
+} from '../constants/documentosAcreditacion'
+import { RUTA_SERVIDOR } from '../ApiRoutes'
 import axios from 'axios'
 
 
@@ -56,11 +56,7 @@ export const listDocumentosAcreditacionAllAction = (id) => async (dispatch, getS
 
 
 
-
-
-
-export const createDocumentoAcreditacionAction = (id_evidencia,numeracion,documento,observacion,id_responsable,fecha_limite) => async (dispatch, getState) => {
-    console.log("action")
+export const createDocumentoAcreditacionAction = (id_evidencia, numeracion, documento, observacion, id_responsable, fecha_limite) => async (dispatch, getState) => {
     try {
         dispatch({
             type: DOC_ACREDITACION_CREATE_REQUEST
@@ -79,17 +75,15 @@ export const createDocumentoAcreditacionAction = (id_evidencia,numeracion,docume
 
         const { data } = await axios.post(RUTA_SERVIDOR + `/documentos_acreditacion/register/${id_evidencia}/${id_responsable}/`,
             {
-                
-                'numeracion':numeracion,
-                'documento':documento,
-
+                'numeracion': numeracion,
+                'documento': documento,
                 'observacion': observacion,
-        
-                'fecha_limite':fecha_limite
-            }, 
+                'fecha_limite': fecha_limite
+            },
             config
         )
 
+        console.log('Data after action:', data);
 
         dispatch({
             type: DOC_ACREDITACION_CREATE_SUCCESS,
@@ -97,7 +91,7 @@ export const createDocumentoAcreditacionAction = (id_evidencia,numeracion,docume
         })
 
     } catch (error) {
-        console.log('error de accion')
+        console.error('Error during action:', error);
         dispatch({
             type: DOC_ACREDITACION_CREATE_FAIL,
             payload: error.response && error.response.data.detail
@@ -106,6 +100,7 @@ export const createDocumentoAcreditacionAction = (id_evidencia,numeracion,docume
         })
     }
 }
+
 
 
 // FILTRO POR EVIDENCIA
