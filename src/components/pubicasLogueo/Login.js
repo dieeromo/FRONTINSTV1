@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions/userActions';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router-dom'; // Importa Link de react-router-dom
 import Messages from '../comunes/Messages';
 import Loader from '../comunes/Loader';
 import NavbarIST from '../comunes/NavbarIST';
@@ -83,6 +83,12 @@ export default function Login() {
                 >
                   Iniciar Sesión
                 </button>
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400 mt-2">
+                  No tienes una cuenta aún?{' '}
+                  <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                    Registrarse
+                  </Link>
+                </p>
               </div>
             </form>
           </div>
