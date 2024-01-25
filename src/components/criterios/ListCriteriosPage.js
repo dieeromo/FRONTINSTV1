@@ -8,8 +8,8 @@ import React, { useRef, useEffect } from 'react';
 import { useSelect } from '@mui/base';
 
 
-
-export default function ListCrietriosPage(getState){
+//modificacion
+export default function ListCrietriosPage(){
     const criterios =  SelectorCriterio()
     // PRUBA
     const userDatos = useSelector(state => state.userDatos)

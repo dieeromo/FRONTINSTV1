@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {RUTA_SERVIDOR} from '../ApiRoutes'
+import { RUTA_SERVIDOR } from '../ApiRoutes'
 import {
     USER_LOGIN_REQUEST,
     USER_LOGIN_SUCCESS,
@@ -26,8 +26,6 @@ import {
     USER_LIST_FAIL,
     USER_LIST_RESET,
 } from '../constants/userConstants'
-
-
 
 export const userDatosAction = () => async (dispatch, getState) => {
     try {
@@ -65,6 +63,42 @@ export const userDatosAction = () => async (dispatch, getState) => {
     }
 }
 
+// export const userDatosAction = () => async (dispatch, getState) => {
+//     try {
+//         dispatch({ type: USER_DATOS_REQUEST })
+
+//         const {
+//             userLogin: { userInfo },
+//         } = getState()
+//         //console.log('accion')
+//         //console.log(`JWT ${userInfo.access}`)
+
+//         const config = {
+//             headers: {
+//                 //'Content-Type': 'application/json',
+//                 Authorization: `JWT ${userInfo.access}`
+//             }
+           
+//         }
+
+//         const { data } = await axios.get(RUTA_SERVIDOR + `/auth/users/me/`, config);
+
+//         dispatch({
+//             type: USER_DATOS_SUCCESS,
+//             payload: data
+//         })
+
+//     } catch (error) {
+//         dispatch({
+//             type: USER_DATOS_FAIL,
+//             payload: error.response && error.response.data.detail
+//                 ? error.response.data.detail
+//                 : error.message,
+//         })
+
+//     }
+// }
+
 
 
 
@@ -72,44 +106,49 @@ export const userDatosAction = () => async (dispatch, getState) => {
 
 export const logout = () => (disptach) => {
     localStorage.removeItem('userInfo')
-    disptach({type: USER_LOGOUT})
+    disptach({ type: USER_LOGOUT })
 }
 
-export const register = (user_name, email, password) => async (dispatch) => {
+
+
+export const register = (email, firstName, lastName, password, rePassword) => async (dispatch) => {
     try {
-        dispatch({type: USER_REGISTER_REQUEST})
+        dispatch({ type: USER_REGISTER_REQUEST });
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
-            }
-        }
+                'Content-Type': 'application/json',
+            },
+        };
 
-        const {data} = await axios.post(RUTA_SERVIDOR + '/users/register/',
-            {'user_name': user_name, 'email': email, 'password': password}, config
-        )
+
+
+
+        const { data } = await axios.post(RUTA_SERVIDOR + '/auth/users/',
+            { 'email': email, 'first_name': firstName, 'last_name': lastName, 'password': password, 're_password': rePassword }, config);
+        console.log(data);
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
-            payload: data
-        })
+            payload: data,
+        });
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
-            payload: data
-        })
+            payload: data,
+        });
 
-        localStorage.setItem('userInfo', JSON.stringify(data))
-
-    } catch (error){
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
         dispatch({
             type: USER_REGISTER_FAIL,
-            payload: error.response && error.response.data.detail 
-            ? error.response.data.detail
-            : error.message,
-        })
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        });
     }
-}
+};
+
 
 
 export const login = (email, password) => async (dispatch) => {

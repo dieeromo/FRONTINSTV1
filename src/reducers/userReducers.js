@@ -50,7 +50,6 @@ export const userDatosReducer = (state = {userInfo_datos:[]}, action) => {
     }
 }
 
-
 export const userListreducer = (state = { lista_usuarios: [] }, action) => {
     switch (action.type) {
         case USER_LIST_REQUEST:
@@ -66,7 +65,6 @@ export const userListreducer = (state = { lista_usuarios: [] }, action) => {
             return state
     }
 }
-
 
 
 export const userLoginReducer = (state = {}, action) => {
