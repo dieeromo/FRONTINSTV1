@@ -16,16 +16,55 @@ import {
     USER_EDIT_FAIL,
     USER_EDIT_RESET,
 
-    USER_SOLO_REQUEST,
-    USER_SOLO_SUCCESS,
-    USER_SOLO_FAIL,
-    USER_SOLO_RESET,
+    USER_DATOS_REQUEST,
+    USER_DATOS_SUCCESS,
+    USER_DATOS_FAIL,
+    USER_DATOS_RESET,
 
     USER_LIST_REQUEST,
     USER_LIST_SUCCESS,
     USER_LIST_FAIL,
     USER_LIST_RESET,
 } from '../constants/userConstants'
+
+
+
+export const userDatosAction = () => async (dispatch, getState) => {
+    try {
+        dispatch({ type: USER_DATOS_REQUEST })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+        //console.log('accion')
+        //console.log(`JWT ${userInfo.access}`)
+
+        const config = {
+            headers: {
+                //'Content-Type': 'application/json',
+                Authorization: `JWT ${userInfo.access}`
+            }
+           
+        }
+
+        const { data } = await axios.get(RUTA_SERVIDOR + `/auth/users/me/`, config);
+
+        dispatch({
+            type: USER_DATOS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: USER_DATOS_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+
+    }
+}
+
 
 
 

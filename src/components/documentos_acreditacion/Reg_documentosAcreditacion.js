@@ -6,14 +6,17 @@ import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import Select from 'react-select'
 import { useParams } from 'react-router-dom'
-
+import { connect } from 'react-redux';
+import React from 'react';
 import {
     createDocumentoAcreditacionAction
 } from '../../actions/documentosAcreditacionActions'
+import { criteriosListReducer } from '../../reducers/criteriosReducers';
 
-export default function Reg_documentosAcreditacion() {
+
+const Reg_documentosAcreditacion = ({userInfo_datos,criterios_Lista} ) => {
     
-    
+    console.log(criterios_Lista)
     
     const {id} = useParams()
     const dispatch = useDispatch();
@@ -141,3 +144,19 @@ export default function Reg_documentosAcreditacion() {
         </>
     )
 }
+
+
+// const mapStateToProps = (state) =>({
+//     userInfo_datos : state.userDatos
+// })
+
+const mapStateToProps = (state) =>{
+    return{
+        userInfo_datos : state.userDatos,
+        criterios_Lista: state.criteriosList
+
+    }
+}
+
+
+export default connect (mapStateToProps)(Reg_documentosAcreditacion)

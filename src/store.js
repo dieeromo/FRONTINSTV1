@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -6,6 +7,7 @@ import {
     userLoginReducer,
     userRegisterReducer,
     userListreducer,
+    userDatosReducer, 
 } from './reducers/userReducers'
 
 import {
@@ -51,6 +53,7 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister:userRegisterReducer,
     userList : userListreducer ,
+    userDatos: userDatosReducer,
     //Criterios
     criteriosList :criteriosListReducer ,
     procesosEvaluacionList:procesosEvaluacionListReducer,
@@ -76,6 +79,7 @@ const reducer = combineReducers({
 
 
 })
+
 
 
 const userInfoStorage = localStorage.getItem('userInfo') ?

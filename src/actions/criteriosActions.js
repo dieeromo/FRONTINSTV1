@@ -18,13 +18,15 @@ PROCESO_EVALUACION_LIST_FAIL,
             dispatch({ type: PROCESO_EVALUACION_LIST_REQUEST })
     
             const {
+             
                 userLogin: { userInfo },
             } = getState()
     
             const config = {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${userInfo.token}`
+                    //Authorization: `Bearer ${userInfo.access}`
+                    Authorization: `JWT ${userInfo.access}`
                 }
             }
     

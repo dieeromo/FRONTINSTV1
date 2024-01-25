@@ -3,8 +3,6 @@ DOC_ACREDITACION_CREATE_REQUEST,
  DOC_ACREDITACION_CREATE_SUCCESS,
  DOC_ACREDITACION_CREATE_FAIL,
 
-
-
  DOC_ACREDITACION_FILTER_LIST_REQUEST,
  DOC_ACREDITACION_FILTER_LIST_SUCCESS,
  DOC_ACREDITACION_FILTER_LIST_FAIL,
@@ -108,11 +106,45 @@ export const createDocumentoAcreditacionAction = (id_evidencia,numeracion,docume
 }
 
 
-// FILTRO POR EVIDENCIA
-export const listDocumentosAcreditacionFilterAction = (id) => async (dispatch, getState) => {
-    try {
-        dispatch({ type: DOC_ACREDITACION_FILTER_LIST_REQUEST })
+// // FILTRO POR EVIDENCIA
+// export const listDocumentosAcreditacionFilterAction = (id) => async (dispatch, getState) => {
+//     try {
+//         dispatch({ type: DOC_ACREDITACION_FILTER_LIST_REQUEST })
 
+//         const {
+//             userLogin: { userInfo },
+//         } = getState()
+
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 Authorization: `Bearer ${userInfo.token}`
+//             }
+//         }
+
+//         const { data } = await axios.get(RUTA_SERVIDOR + `/documentos_acreditacion/list/filter/${id}/`, config);
+
+//         dispatch({
+//             type: DOC_ACREDITACION_FILTER_LIST_SUCCESS,
+//             payload: data
+//         })
+
+//     } catch (error) {
+//         dispatch({
+//             type: DOC_ACREDITACION_FILTER_LIST_FAIL,
+//             payload: error.response && error.response.data.detail
+//                 ? error.response.data.detail
+//                 : error.message,
+//         })
+
+//     }
+// }
+
+
+export const listDocumentosAcreditacionFilterAction  = (id) => async (dispatch, getState) => {
+    try {
+        await new Promise(resolve => setTimeout(resolve, 200));
+        dispatch({ type: DOC_ACREDITACION_FILTER_LIST_REQUEST  })
         const {
             userLogin: { userInfo },
         } = getState()
@@ -123,8 +155,7 @@ export const listDocumentosAcreditacionFilterAction = (id) => async (dispatch, g
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-
-        const { data } = await axios.get(RUTA_SERVIDOR + `/documentos_acreditacion/list/filter/${id}/`, config);
+        const { data } = await axios.get(RUTA_SERVIDOR + `/documentos_acreditacion/list/filter/${id}`, config);
 
         dispatch({
             type: DOC_ACREDITACION_FILTER_LIST_SUCCESS,
@@ -138,6 +169,5 @@ export const listDocumentosAcreditacionFilterAction = (id) => async (dispatch, g
                 ? error.response.data.detail
                 : error.message,
         })
-
     }
 }

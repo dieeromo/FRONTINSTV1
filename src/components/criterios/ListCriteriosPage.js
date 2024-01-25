@@ -2,15 +2,24 @@ import {SelectorCriterio} from './norender/SelectorCriterios'
 import NavbarIST from '../comunes/NavbarIST'
 import { Grid } from 'gridjs-react';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import { useSelector } from 'react-redux'
 
 import React, { useRef, useEffect } from 'react';
+import { useSelect } from '@mui/base';
 
 
 
-export default function ListCrietriosPage(){
+export default function ListCrietriosPage(getState){
     const criterios =  SelectorCriterio()
-    console.log(criterios)
+    // PRUBA
+    const userDatos = useSelector(state => state.userDatos)
+    const {error,loading,userInfo_datos} = userDatos
+    console.log("criterios")
+    console.log(userInfo_datos)
+
+
+
+
     const columns = [
         {
             name:'Numeracion',
@@ -20,10 +29,7 @@ export default function ListCrietriosPage(){
     ]
 
     
- 
 
-
-  
 
     return(
         <>

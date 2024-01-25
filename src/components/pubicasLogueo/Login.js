@@ -6,6 +6,8 @@ import Messages from '../comunes/Messages'
 import Loader from '../comunes/Loader';
 import NavbarIST from '../comunes/NavbarIST'
 
+import {userDatosAction } from '../../actions/userActions'
+
 import '../../App.css'
 
 
@@ -36,13 +38,14 @@ export default function Login() {
 
     useEffect(() => {
         if (userInfo) {
-            console.log("este es el mensaje")
-            console.log("USER INFO")
-            console.log(userInfo.user_name)
-            console.log("USER LOGIN")
-            console.log(userLogin)
+            //console.log("este es el mensaje")
+            //console.log("USER INFO")
+            //console.log(userInfo.user_name)
+            //console.log("USER LOGIN")
+            //console.log(userLogin)
             if(tempo){
                 navigate(path);
+                //console.log(userInfo)
             }
             console.log(error)
             
