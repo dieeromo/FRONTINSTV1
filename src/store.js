@@ -6,6 +6,7 @@ import {
     userLoginReducer,
     userRegisterReducer,
     userListreducer,
+    userDatosReducer, 
 } from './reducers/userReducers'
 
 import {
@@ -51,6 +52,7 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister:userRegisterReducer,
     userList : userListreducer ,
+    userDatos: userDatosReducer,
     //Criterios
     criteriosList :criteriosListReducer ,
     procesosEvaluacionList:procesosEvaluacionListReducer,
@@ -76,6 +78,7 @@ const reducer = combineReducers({
 
 
 })
+
 
 
 const userInfoStorage = localStorage.getItem('userInfo') ?
