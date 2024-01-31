@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'react-select';
+import { useEffect } from 'react';
 
-import NavbarIST from '../comunes/NavbarIST';
+import { userDatosAction } from '../../actions/userActions';
+
+import Navbar_acreditacion from '../comunes/Navbar_acreditacionIST';
 import {
   SelectorCarrera,
   SelectorCoordinacionesInstitucionales,
@@ -19,26 +22,44 @@ export default function RegDocumentosAcreditacion() {
 
   const path = `/documentos_acreditacion/list/${id}`;
 
+  useEffect(() => {
+
+    dispatch(userDatosAction());
+  }, [dispatch]);
+
+
+  const userDatos = useSelector(state => state.userDatos);
+  const { error: userError, loading: userLoading, userInfo_datos } = userDatos;
+
+
+
   const [numeracion, setNumeracion] = useState('');
   const [documento, setDocumento] = useState('');
   const [observacion, setObservacion] = useState('');
   const [responsable, setResponsable] = useState('');
   const [fechaLimite, setFechaLimite] = useState('');
-
+  const [carrera, setCarrera] = useState('');
+  const [coor_institucionales, set_coor_institucionales] = useState('');
+  const [otrasComisiones, set_otrasComisiones] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createDocumentoAcreditacionAction(id, numeracion, documento, observacion, responsable, fechaLimite));
+    dispatch(createDocumentoAcreditacionAction(id, numeracion, documento, observacion, responsable, fechaLimite, userInfo_datos.id, carrera, coor_institucionales, otrasComisiones));
     navigate(path);
   };
 
+
+
   return (
     <>
-      <NavbarIST />
-      <div className="max-w-md mx-auto my-8 p-6 bg-white shadow-md rounded-md">
-        <h3 className="text-2xl font-bold mb-4">Registro de nombres de documentos</h3>
-        <form onSubmit={handleSubmit}>
+      <Navbar_acreditacion />
+      <h3 className="text-2xl font-bold mb-4 text-center" >Registro de documentos</h3>
+      <form onSubmit={handleSubmit} method="POST" action="#">
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div></div>
+
           <div className="mb-4">
-            <label htmlFor="numeracion" className="block text-sm font-semibold text-gray-600">Numeración:</label>
+            <label htmlFor="numeracion" className="block text-lg font-semibold text-gray-500">* Numeración:</label>
             <textarea
               value={numeracion}
               onChange={(e) => setNumeracion(e.target.value)}
@@ -46,13 +67,15 @@ export default function RegDocumentosAcreditacion() {
               id="numeracion"
               name="numeracion"
               rows={2}
-              className="w-full p-2 border rounded-md"
-              placeholder="Número"
+              className="w-full  p-2 border rounded-md shadow-md "
+              placeholder="Número de documento"
+              required
             />
           </div>
 
+
           <div className="mb-4">
-            <label htmlFor="documento" className="block text-sm font-semibold text-gray-600">Documento:</label>
+            <label htmlFor="documento" className="block text-lg font-semibold text-gray-500">* Documento:</label>
             <textarea
               value={documento}
               onChange={(e) => setDocumento(e.target.value)}
@@ -60,13 +83,14 @@ export default function RegDocumentosAcreditacion() {
               id="documento"
               name="documento"
               rows={2}
-              className="w-full p-2 border rounded-md"
-              placeholder="Documento"
+              className="w-full p-2 border rounded-md shadow-md "
+              placeholder="Nombre de documento"
+              required
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="observacion" className="block text-sm font-semibold text-gray-600">Observación:</label>
+            <label htmlFor="observacion" className="block text-lg font-semibold text-gray-500">Observación:</label>
             <textarea
               value={observacion}
               onChange={(e) => setObservacion(e.target.value)}
@@ -74,60 +98,101 @@ export default function RegDocumentosAcreditacion() {
               id="observacion"
               name="observacion"
               rows={2}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md shadow-md "
               placeholder="Observación"
             />
           </div>
 
+
+
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div></div>
+
           <div className="mb-4">
-            <label htmlFor="responsable" className="block text-sm font-semibold text-gray-600">Docente responsable:</label>
+            <label htmlFor="carrera" className="block text-lg font-semibold text-gray-500 shadow-md ">Carrera:</label>
+            <Select options={SelectorCarrera()} onChange={(selectedOption) => setCarrera(selectedOption.value)}
+            className='shadow-md' />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="coordinaciones_institucionales" className="block text-lg font-semibold text-gray-500 shadow-md ">Coordinaciones institucionales:</label>
+            <Select
+              options={SelectorCoordinacionesInstitucionales()}
+              onChange={(selectedOption) => set_coor_institucionales(selectedOption.value)}
+              className='shadow-md'
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="otras_comisiones" className="block text-lg font-semibold text-gray-500 shadow-md ">Otras comisiones:</label>
+            <Select
+              options={SelectorOtrasComisiones()}
+              onChange={(selectedOption) => set_otrasComisiones(selectedOption.value)}
+              className='shadow-md'
+            />
+          </div>
+
+
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+
+          <div></div>
+          <div className="mb-4">
+            <label htmlFor="responsable" className="block text-lg font-semibold text-gray-500  " >* Docente responsable:</label>
             <Select
               options={SelectorUsuarios()}
               onChange={(selectedOption) => setResponsable(selectedOption.value)}
+              required
+              className='shadow-md'
             />
           </div>
+        </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div></div>
           <div className="mb-4">
-            <label htmlFor="carrera" className="block text-sm font-semibold text-gray-600">Carrera:</label>
-            <Select options={SelectorCarrera()} onChange={(selectedOption) => setResponsable(selectedOption.value)} />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="coordinaciones_institucionales" className="block text-sm font-semibold text-gray-600">Coordinaciones institucionales:</label>
-            <Select
-              options={SelectorCoordinacionesInstitucionales()}
-              onChange={(selectedOption) => setResponsable(selectedOption.value)}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="otras_comisiones" className="block text-sm font-semibold text-gray-600">Otras comisiones:</label>
-            <Select
-              options={SelectorOtrasComisiones()}
-              onChange={(selectedOption) => setResponsable(selectedOption.value)}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="fecha_limite" className="block text-sm font-semibold text-gray-600">Fecha entrega:</label>
+            <label htmlFor="fecha_limite" className="block text-lg font-semibold text-gray-500 shadow-md ">* Fecha entrega:</label>
             <input
               value={fechaLimite}
               onChange={(e) => setFechaLimite(e.target.value)}
               type="date"
               id="fecha_limite"
               name="fecha_limite"
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md shadow-md "
+              required
             />
           </div>
 
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div></div>
           <button
-            type="submit"
-            className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
-          >
-            Guardar
-          </button>
-        </form>
-      </div>
+          type="submit"
+          className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
+        >
+          Guardar
+        </button>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </form>
+
     </>
   );
 }

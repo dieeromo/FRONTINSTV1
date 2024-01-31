@@ -14,7 +14,7 @@ export  function SelectorUsuarios() {
     const { error, loading, lista_usuarios } = userList
 
     const user_lista = lista_usuarios.map((item) => ({
-        label: item.first_name,
+        label: item.first_name + " "+item.last_name,
         value: item.id,
     }))
 

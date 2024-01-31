@@ -1,5 +1,5 @@
 import {SelectorCriterio} from './norender/SelectorCriterios'
-import NavbarIST from '../comunes/NavbarIST'
+import Navbar_acreditacion from '../comunes/Navbar_acreditacionIST'
 import { Grid } from 'gridjs-react';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useSelector } from 'react-redux'
@@ -33,7 +33,7 @@ export default function ListCrietriosPage(){
 
     return(
         <>
-        <NavbarIST/>
+        <Navbar_acreditacion/>
         <div>
             <h5 className="text-4xl font-bold text-center text-indigo-800">
                 Criterios

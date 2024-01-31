@@ -57,7 +57,7 @@ import {
     
     
     
-    export const createDocumentoAcreditacionAction = (id_evidencia,numeracion,documento,observacion,id_responsable,fecha_limite) => async (dispatch, getState) => {
+    export const createDocumentoAcreditacionAction = (id_evidencia,numeracion,documento,observacion,id_responsable,fecha_limite, digitador, carrera, coor_institucionales,otrasComisiones) => async (dispatch, getState) => {
         console.log("action")
         try {
             dispatch({
@@ -83,7 +83,11 @@ import {
     
                     'observacion': observacion,
             
-                    'fecha_limite':fecha_limite
+                    'fecha_limite':fecha_limite,
+                    'digitador':digitador,
+                    'carrera':carrera,
+                    'coor_institucionales':coor_institucionales,
+                    'otras_comisiones':otrasComisiones
                 }, 
                 config
             )
@@ -151,8 +155,10 @@ import {
     
             const config = {
                 headers: {
+                    
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${userInfo.token}`
+                    //Authorization: `Bearer ${userInfo.access}`
+                    Authorization: `JWT ${userInfo.access}`
                 }
             }
             const { data } = await axios.get(RUTA_SERVIDOR + `/documentos_acreditacion/list/filter/${id}`, config);

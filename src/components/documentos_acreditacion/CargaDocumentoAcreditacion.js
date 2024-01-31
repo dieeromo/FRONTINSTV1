@@ -10,14 +10,17 @@ export default function CargaDocumentoAcreditacion(){
 
 
     const {id, id_evidencia} = useParams()
-    console.log(id)
+    console.log('id_evidencia')
+    console.log(id_evidencia)
 
     const path = (`/documentos_acreditacion/list/${id_evidencia}`);
     const navigate = useNavigate();
 
     const userLogin = useSelector (state => state.userLogin);
     const {userInfo} = userLogin;
+    
 
+    console.log(userInfo)
 
 
     const handleFileChange = async(e) => {

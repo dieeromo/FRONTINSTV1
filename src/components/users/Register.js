@@ -3,9 +3,15 @@
   import { register } from '../../actions/userActions';
   import Messages from '../comunes/Messages';
   import Loader from '../comunes/Loader';
-  import NavbarIST from '../comunes/NavbarIST';
+  import Navbar_inicio from '../comunes/Navbar_inicio';
+  import { useNavigate} from 'react-router-dom';
 
   export default function Register() {
+
+    const navigate = useNavigate();
+
+    const path = `/login`;
+    
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState(''); 
     const [lastName, setLastName] = useState('');  
@@ -20,11 +26,12 @@
     const submitHandler = (e) => {
       e.preventDefault();
       dispatch(register(email, firstName, lastName, password, rePassword));
+      navigate(path)
     };
 
     return (
       <>
-        <NavbarIST />
+        <Navbar_inicio />
         {error && <Messages>{error}</Messages>}
         {loading ? (
           <Loader />

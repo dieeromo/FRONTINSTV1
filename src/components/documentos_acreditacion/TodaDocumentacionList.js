@@ -1,4 +1,4 @@
-import NavbarIST from '../comunes/NavbarIST';
+import NavbarIST from '../comunes/Navbar_acreditacionIST';
 import { listDocumentosAcreditacionAllAction } from '../../actions/documentosAcreditacionActions';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,12 +16,13 @@ export default function TodaDocumentacionlist() {
 
   const documentosAcreditacionAllList = useSelector((state) => state.documentosAcreditacionAllList);
   const { error, loading, doc_acreditacion_all } = documentosAcreditacionAllList;
+  console.log(doc_acreditacion_all )
 
-  useEffect(() => {
-    if (doc_acreditacion_all) {
-      setListaDocumentosLocal(doc_acreditacion_all);
-    }
-  }, [doc_acreditacion_all]);
+  // useEffect(() => {
+  //   if (doc_acreditacion_all) {
+  //     setListaDocumentosLocal(doc_acreditacion_all);
+  //   }
+  // }, [doc_acreditacion_all]);
 
   const columns = [
     {
@@ -33,26 +34,63 @@ export default function TodaDocumentacionlist() {
       label: 'Subcriterio',
     },
     {
+      name: 'indicador_key',
+      label: 'key',
+    },
+    
+    {
       name: 'indicador',
       label: 'Indicador',
+    },
+    {
+      name: 'evidencia_key',
+      label: 'key evi',
     },
     {
       name: 'evidencia',
       label: 'Evidencia',
     },
     {
+      name: 'numeracion',
+      label: 'Key doc',
+    },
+    {
       name: 'documento',
-      label: 'Documento',
+      label: 'Doc',
+    },
+    {
+      name: 'responsable',
+      label:'resp'
     },
     {
       name: 'archivo',
       label: 'Archivo',
       options: {
         customBodyRender: (value, tableMeta) => (
-          <a href={`http://localhost:8002${tableMeta.rowData[5]}`}>Ver</a>
+          tableMeta.rowData[9] ? 
+          <a href={`http://localhost:8002${tableMeta.rowData[9]}`}>Ver</a>
+          :
+          <></>
         ),
       },
     },
+    {
+      name: 'coor_carrera',
+      label : 'carrera'
+    },
+    {
+      name: 'coor_institucionales',
+      label : 'Coor Inst'
+    },
+    {
+      name: 'otras_comisiones',
+      label : 'Otras comisiones'
+    },
+    {
+      name:'digitador',
+      label:'dig'
+    }
+
   ];
 
   const options = {
@@ -66,7 +104,7 @@ export default function TodaDocumentacionlist() {
       <div>
         <MUIDataTable
           title={'all'}
-          data={listaDocumentosLocal}
+          data={doc_acreditacion_all}
           columns={columns}
           options={options}
         />

@@ -1,7 +1,7 @@
 import {listEvidenciaFilterAction} from '../../actions/evidenciasActions'
 import { useEffect,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import NavbarIST from '../comunes/NavbarIST'
+import Navbar_acreditacion from '../comunes/Navbar_acreditacionIST'
 import { useParams } from 'react-router-dom'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -20,18 +20,18 @@ export default function ListEvidenciasPage(){
 
     return(
         <>
-        <NavbarIST/>
+        <Navbar_acreditacion/>
         <div>
             <h3 className='text-4xl font-bold text-center text-indigo-900'>Evidencias</h3>
-           
-            <table className="table-auto w-1/2 shadow-md mt-8 mx-auto w-full ">
+           <div className='mx-auto'>
+           <table className="m-2  shadow-md  ">
                 <thead className='bg-gray-200'>
                     <tr className='text-center'>
-                        <th>Criterio</th>
-                        <th>Subcriterio</th>
-                        <th>Indicador</th>
-                        <th>Numero</th>
-                        <th>Evidencia</th>
+                        <th className='px-2 pt-2'>Criterio</th>
+                        <th className='px-2 pt-2'>Subcriterio</th>
+                        <th className='px-2 pt-2'>Indicador</th>
+                        <th className='px-2 pt-2'>Numero</th>
+                        <th className='px-2 pt-2'>Evidencia</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -39,17 +39,19 @@ export default function ListEvidenciasPage(){
                     {
                         evidencias_filter_lista.map((item,index)=>(
                             <tr key={index} className='border px-4 py-2 text-center'>
-                                <td>{item.criterio}</td>
-                                <td>{item.subCriterio}</td>
-                                <td>{item.indicador}</td>
-                                <td>{item.numeracion}</td>
-                                <td> {item.evidencia} </td>
-                                <td><a href={`/documentos_acreditacion/list/${item.id}`}><ArrowForwardIosIcon /></a></td>
+                                <td className='px-3 pt-3'>{item.criterio}</td>
+                                <td className='px-3 pt-3'>{item.subCriterio}</td>
+                                <td className='px-3 pt-3'>{item.indicador}</td>
+                                <td className='px-3 pt-3'>{item.numeracion}</td>
+                                <td className='px-3 pt-3'> {item.evidencia} </td>
+                                <td className='px-3 pt-3'><a href={`/documentos_acreditacion/list/${item.id}`}><ArrowForwardIosIcon /></a></td>
                             </tr>
                         ))
                     }
                 </tbody>
             </table>
+           </div>
+
         </div>
         </>
     )

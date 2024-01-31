@@ -4,7 +4,7 @@ import { login } from '../../actions/userActions';
 import { useNavigate, Link } from 'react-router-dom'; // Importa Link de react-router-dom
 import Messages from '../comunes/Messages';
 import Loader from '../comunes/Loader';
-import NavbarIST from '../comunes/NavbarIST';
+import Navbar_inicio from '../comunes/Navbar_inicio';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,6 +13,8 @@ export default function Login() {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
+  console.log('user info *****')
+  console.log(userInfo)
 
   const navigate = useNavigate();
   const path = '/';
@@ -31,7 +33,7 @@ export default function Login() {
 
   return (
     <>
-      <NavbarIST />
+      <Navbar_inicio />
       {error && <Messages>{error}</Messages>}
       {loading ? (
         <Loader />
@@ -91,9 +93,10 @@ export default function Login() {
                 </p>
               </div>
             </form>
+            {userInfo ? <> Usuario o contraseña invalidos </>: <></>}
           </div>
         </div>
       )}
-    </>
+    </> 
   );
 }

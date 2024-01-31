@@ -1,11 +1,34 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../actions/userActions';
+import { logout, userDatosAction } from '../../actions/userActions';
+import { useEffect } from 'react';
+import { useNavigate} from 'react-router-dom';
 
-export default function NavbarIST() {
+export default function Navbar_Biblioteca() {
+  const navigate = useNavigate();
+  const path = `/login`;
+ 
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate(path)
+  };
+
+
+
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
+
+  useEffect(() => {
+
+    dispatch(userDatosAction());
+  }, [dispatch]);
+
+
+  const userDatos = useSelector(state => state.userDatos);
+  const { error: userError, loading: userLoading, userInfo_datos } = userDatos;
+
+
 
   let isLoggedIn = false;
 
@@ -13,33 +36,28 @@ export default function NavbarIST() {
     isLoggedIn = true;
   }
 
-  const logoutHandler = () => {
-    dispatch(logout());
-  };
+
 
   return (
-    <nav className="bg-blue-800 p-4">
+    <nav className="bg-green-800 p-4">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <span className="text-white text-xl font-bold mr-4">Logo</span>
+          <span className="text-white text-xl font-bold mr-4"> <a href='/'>ISVIF</a> </span>
           {isLoggedIn && (
             <>
               <a
-                href="/criterios/list/"
+                href="/biblioteca/register_obras"
                 className="text-white px-4 py-2 hover:bg-blue-600 rounded transition-all"
               >
-                Criterios
+                Registro obras
               </a>
-              <a
-                href="/documentos_acreditacion/all/"
-                className="text-white px-4 py-2 hover:bg-blue-600 rounded transition-all"
-              >
-                Todo
-              </a>
+    
             </>
           )}
         </div>
         <div className="flex items-center">
+          <span className="text-white text-xl mr-4" >{userInfo_datos? <>{userInfo_datos.first_name }</>: <></>}</span>
+          
           {isLoggedIn ? (
             <button
               onClick={logoutHandler}

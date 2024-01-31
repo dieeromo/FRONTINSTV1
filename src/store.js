@@ -46,6 +46,14 @@ import {
     pruebasCreateReducer 
 } from './reducers/pruebasReducers'
 
+//BIBLIOTECA
+import {categoriaLibros_ListReducer,
+    tipoObraLibros_ListReducer,
+    tipoMaterial_Libros_ListReducer,
+    obrasCreateReducer,
+    
+} from './reducers/biblioteca/bibliotecaReducers'
+
 
 
 const reducer = combineReducers({
@@ -72,12 +80,15 @@ const reducer = combineReducers({
     coor_carreraList : coor_carreraListReducer,
     coor_InstitucionalesList : coor_InstitucionalesListReducer,
     otras_comisionesList : otras_comisionesListReducer,
+
+    //BIBLIOTECA
+    categoriaLibros_List: categoriaLibros_ListReducer,
+    tipoObraLibros_List :tipoObraLibros_ListReducer,
+    tipoMaterial_Libros_List: tipoMaterial_Libros_ListReducer,
+    obrasCreate :  obrasCreateReducer,
     //pruebas
     pruebasList: pruebasListReducer,
     pruebasCreate : pruebasCreateReducer ,
-    
-
-
 })
 
 

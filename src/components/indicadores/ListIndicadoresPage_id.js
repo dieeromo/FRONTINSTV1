@@ -2,7 +2,7 @@ import { listIndicadoresFilterAction } from '../../actions/indicadoresActions';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import NavbarIST from '../comunes/NavbarIST';
+import Navbar_acreditacion from '../comunes/Navbar_acreditacionIST';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function ListIndicadoresPage_id() {
@@ -18,7 +18,7 @@ export default function ListIndicadoresPage_id() {
 
   return (
     <>
-      <NavbarIST />
+      <Navbar_acreditacion />
       <div className="container mx-auto mt-10">
         <h3 className="text-4xl font-bold text-center text-indigo-800 mb-6">Indicadores</h3>
         <table className="table-auto w-full shadow-md">

@@ -17,6 +17,9 @@ import TodaDocumentacionList from './components/documentos_acreditacion/TodaDocu
 import PruebasList from './components/pruebas/PruebasList'
 import PruebasRegister from './components/pruebas/PruebasRegister'
 import Pruebascarga from './components/pruebas/Pruebascarga'
+
+import BibliotecaLanding from './components/biblioteca/BibliotecaLanding'
+import RegisterObras from './components/biblioteca/RegisterObras'
 function App() {
   return (
     <BrowserRouter>
@@ -41,6 +44,10 @@ function App() {
         <Route path='/pruebas/register' element={<  PruebasRegister />} />
 
         <Route path='/carga/:id' element={<Pruebascarga />} />
+
+        <Route path='/biblioteca/landing' element={<BibliotecaLanding />} />
+        <Route path='/biblioteca/register_obras' element={<RegisterObras />} />
+
 
       </Routes>
     </BrowserRouter>

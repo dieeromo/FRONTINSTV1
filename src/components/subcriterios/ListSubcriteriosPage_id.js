@@ -1,7 +1,7 @@
 import { listSubCriteriosFilterAction } from '../../actions/subcriteriosActions';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import NavbarIST from '../comunes/NavbarIST';
+import Navbar_acreditacion from '../comunes/Navbar_acreditacionIST';
 import { useParams } from 'react-router-dom';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -18,7 +18,7 @@ export default function ListSubcriteriosPage_id() {
 
   return (
     <>
-      <NavbarIST />
+      <Navbar_acreditacion  />
       <div className="container mx-auto mt-10">
         <h2 className="text-4xl font-bold text-center text-indigo-800 mb-6">Subcriterios</h2>
         <div>

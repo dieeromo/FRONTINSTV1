@@ -58,8 +58,12 @@ export const listCriteriosAction = () => async (dispatch, getState) => {
 
         const config = {
             headers: {
+                //'Content-Type': 'application/json',
+                //Authorization: `Bearer ${userInfo.token}`
+
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                //Authorization: `Bearer ${userInfo.access}`
+                Authorization: `JWT ${userInfo.access}`
             }
         }
 

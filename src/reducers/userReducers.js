@@ -28,24 +28,24 @@ import {
 export const userDatosReducer = (state = {userInfo_datos:[]}, action) => {
     switch (action.type) {
         case USER_DATOS_REQUEST:
-            console.log("request")
+            //console.log("request")
             return { loading: true,userInfo_datos:[]}
             
 
         case USER_DATOS_SUCCESS:
-            console.log("succes")
+            //console.log("succes")
             return { loading: false, userInfo_datos: action.payload }
 
         case USER_DATOS_FAIL:
-            console.log("fail")
+            //console.log("fail")
             return { loading: false,  error: action.payload }
 
         case USER_DATOS_RESET:
-            console.log("reset")
+            //console.log("reset")
             return {}
 
         default:
-            console.log("default")
+            //console.log("default")
             return state
     }
 }
