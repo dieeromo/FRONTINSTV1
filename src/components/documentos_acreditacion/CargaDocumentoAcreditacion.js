@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import React, { useState } from 'react';
-
+import {RUTA_SERVIDOR} from '../../ApiRoutes'
 
 
 export default function CargaDocumentoAcreditacion(){
@@ -37,8 +37,8 @@ export default function CargaDocumentoAcreditacion(){
                 }
               }
 
-              const { data } = await axios.put('http://localhost:8002/documentos_acreditacion/subir_archivo/', formData, config)
-
+              //const { data } = await axios.put('http://localhost:8002/documentos_acreditacion/subir_archivo/', formData, config)
+              const { data } = await axios.put(RUTA_SERVIDOR + `/documentos_acreditacion/subir_archivo/`,formData, config);
         } catch (error){
             console.log(error)
         }

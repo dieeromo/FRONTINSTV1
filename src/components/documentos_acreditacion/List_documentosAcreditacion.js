@@ -7,6 +7,7 @@ import {userDatosAction} from '../../actions/userActions'
 
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import ArticleIcon from '@mui/icons-material/Article';
+import {RUTA_SERVIDOR} from '../../ApiRoutes'
 
 export default function ListDocumentosAcreditacion(){
 
@@ -42,7 +43,7 @@ export default function ListDocumentosAcreditacion(){
   }
 
     //console.log('id_usario')
-    console.log(userInfo_datos)
+    //console.log(userInfo_datos)
 
     
     
@@ -85,7 +86,7 @@ export default function ListDocumentosAcreditacion(){
                             <td className='pt-4 px-2'> {item.documento}</td>
                             <td className='pt-4 px-2'> {id_usuario == item.responsable_id ? <a href={`/documentos_acreditacion/subir_archivo/${item.id}/${id}`}><VerticalAlignTopIcon/></a> : <> No autorizado </> }  </td>
                             <td className='pt-4'>{item.responsable}</td>
-                            <td className='pt-4 px-2'> {item.archivo ? <a href={'http://localhost:8002'+item.archivo}><ArticleIcon/></a> : <> </>} </td>
+                            <td className='pt-4 px-2'> {item.archivo ? <a href={RUTA_SERVIDOR+item.archivo}><ArticleIcon/></a> : <> </>} </td>
                             <td className='pt-4 px-2'>{item.fecha_limite}</td>
                             <td className='pt-4'>{item.coor_carrera}</td>
                             <td className='pt-4'>{item.coor_institucionales}</td>
