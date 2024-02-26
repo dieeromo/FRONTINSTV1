@@ -13,6 +13,7 @@ import Reg_documentosAcreditacion from './components/documentos_acreditacion/Reg
 import List_documentosAcreditacion from './components/documentos_acreditacion/List_documentosAcreditacion'
 import CargaDocumentoAcreditacion from './components/documentos_acreditacion/CargaDocumentoAcreditacion'
 import TodaDocumentacionList from './components/documentos_acreditacion/TodaDocumentacionList'
+import PendienteDocentes from './components/sistema_acreditacion/PendienteDocentes'
 
 import PruebasList from './components/pruebas/PruebasList'
 import PruebasRegister from './components/pruebas/PruebasRegister'
@@ -37,6 +38,7 @@ function App() {
         <Route path='/documentos_acreditacion/list/:id' element={<  List_documentosAcreditacion />} />
         <Route path='/documentos_acreditacion/subir_archivo/:id/:id_evidencia/' element={<  CargaDocumentoAcreditacion />} />
         <Route path='/documentos_acreditacion/all/' element={<  TodaDocumentacionList />} />
+        <Route path='/pendientes/docentes/acreditacion' element={<  PendienteDocentes />} />
 
 
 

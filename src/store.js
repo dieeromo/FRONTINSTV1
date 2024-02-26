@@ -3,6 +3,8 @@ import { persistStore, persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+
+
 import {
     userLoginReducer,
     userRegisterReducer,
@@ -55,6 +57,13 @@ import {categoriaLibros_ListReducer,
 } from './reducers/biblioteca/bibliotecaReducers'
 
 
+import {
+    documentosAcreditacionDocenteListReducer,
+} from './components/sistema_acreditacion/reducers/docPendienteReducers'
+
+
+
+
 
 const reducer = combineReducers({
     //user
@@ -75,6 +84,9 @@ const reducer = combineReducers({
     doc_acreditacionCreate:doc_acreditacionCreateReducer,
     documentosAcreditacionFilterList:documentosAcreditacionFilterListReducer,
     documentosAcreditacionAllList:documentosAcreditacionAllListReducer ,
+
+    //sistema acreditacion
+    documentosAcreditacionDocenteList:documentosAcreditacionDocenteListReducer,
 
     //GENERAL
     coor_carreraList : coor_carreraListReducer,

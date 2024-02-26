@@ -16,7 +16,7 @@ export default function TodaDocumentacionlist() {
 
   const documentosAcreditacionAllList = useSelector((state) => state.documentosAcreditacionAllList);
   const { error, loading, doc_acreditacion_all } = documentosAcreditacionAllList;
-  console.log(doc_acreditacion_all )
+  //console.log(doc_acreditacion_all )
 
   // useEffect(() => {
   //   if (doc_acreditacion_all) {

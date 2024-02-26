@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout, userDatosAction } from '../../actions/userActions';
+
+import  { logout, userDatosAction } from '../../actions/userActions'
 import { useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 
-export default function Navbar_acreditacion() {
+export default function NavAcreditacion() {
   const navigate = useNavigate();
   const path = `/login`;
  
@@ -59,6 +60,7 @@ export default function Navbar_acreditacion() {
               >
                 Todo
               </a>
+
               <a
                 href="/pendientes/docentes/acreditacion/"
                 className="text-white px-4 py-2 hover:bg-blue-600 rounded transition-all"
