@@ -84,3 +84,4 @@ export const listCriteriosAction = () => async (dispatch, getState) => {
 
     }
 }
+//comentario inventario2
