@@ -1,4 +1,4 @@
-import Navbar_planificacion from '../../comunes/Navbar_planificacion'
+import Navbar_planificacion from '../Navbar_planificacion'
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { useEffect } from 'react';

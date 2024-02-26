@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Navbar_planificacion from '../../comunes/Navbar_planificacion';
+import Navbar_planificacion from '../Navbar_planificacion';
 import { listInventarioAction } from '../actions/inventarioActions';
 import MUIDataTable from 'mui-datatables';
 
