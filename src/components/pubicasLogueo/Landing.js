@@ -44,7 +44,7 @@ export default function Landing() {
     };
 
     const handleCardClick_planificacion = () => {
-        navigate('/criterios')
+        navigate('/inventario/landing')
     };
 
     return (
@@ -85,8 +85,8 @@ export default function Landing() {
                             className="bg-green-200 p-4 rounded-md cursor-pointer"
                             onClick={handleCardClick_planificacion}
                         >
-                            <h2 className="text-xl font-semibold text-black">Planificación</h2>
-                            <p className="text-black">Seguimiento a la planificación</p>
+                            <h2 className="text-xl font-semibold text-black">Inventario</h2>
+                            <p className="text-black">Sistema de Inventario</p>
                         </div>
                         :
                         <>

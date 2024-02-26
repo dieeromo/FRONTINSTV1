@@ -56,6 +56,16 @@ import {categoriaLibros_ListReducer,
     
 } from './reducers/biblioteca/bibliotecaReducers'
 
+//INVENTARIO
+import {
+    ubicacion_inventario_ListReducer,
+    tipo_inventario_ListReducer,
+    estado_inventario_ListReducer,
+    inventariosCreateReducer,
+    inventarioListReducer,
+    
+} from './components/inventario/reducers/inventarioReducers'
+
 
 import {
     documentosAcreditacionDocenteListReducer,
@@ -98,6 +108,14 @@ const reducer = combineReducers({
     tipoObraLibros_List :tipoObraLibros_ListReducer,
     tipoMaterial_Libros_List: tipoMaterial_Libros_ListReducer,
     obrasCreate :  obrasCreateReducer,
+
+     //INVENTARIO
+     tipo_inventario_List: tipo_inventario_ListReducer,
+     estado_inventario_List: estado_inventario_ListReducer,
+     ubicacion_inventario_List: ubicacion_inventario_ListReducer,
+     InventarioCreate: inventariosCreateReducer,
+     inventarioList: inventarioListReducer,
+     
     //pruebas
     pruebasList: pruebasListReducer,
     pruebasCreate : pruebasCreateReducer ,

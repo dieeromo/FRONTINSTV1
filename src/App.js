@@ -21,6 +21,10 @@ import Pruebascarga from './components/pruebas/Pruebascarga'
 
 import BibliotecaLanding from './components/biblioteca/BibliotecaLanding'
 import RegisterObras from './components/biblioteca/RegisterObras'
+
+
+import RegisterInventarios from './components/inventario/vista/RegisterInventarios'
+import InventarioLanding from './components/inventario/vista/InventarioLanding'
 function App() {
   return (
     <BrowserRouter>
@@ -49,6 +53,10 @@ function App() {
 
         <Route path='/biblioteca/landing' element={<BibliotecaLanding />} />
         <Route path='/biblioteca/register_obras' element={<RegisterObras />} />
+
+
+        <Route path='/inventario/landing' element={<InventarioLanding />} />
+        <Route path='/inventario/register_inventario' element={<RegisterInventarios />} />
 
 
       </Routes>
