@@ -60,7 +60,7 @@ export default function Landing() {
                             onClick={handleCardClick_acreditacion}
                         >
                             <h2 className="text-xl font-semibold text-dark">Acreditación</h2>
-                            <p className="text-Black">Sistema de autoevaluación y acreditacion</p>
+                            <p className="text-Black">Sistema de autoevaluación y acreditación</p>
                         </div>
                         :
                         <>

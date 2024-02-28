@@ -43,7 +43,7 @@ export default function Navbar_acreditacion() {
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
          
-          <span  className="text-white text-xl font-bold mr-4"> <a href='/'>ITSVIF</a> </span>
+          <span  className="text-white text-xl font-bold mr-4"> <a href='/'>ISTVIF</a> </span>
   
           {isLoggedIn && (
             <>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MUIDataTable from 'mui-datatables';
 
+import {RUTA_SERVIDOR} from '../../ApiRoutes'
 
 export default function TodaDocumentacionlist() {
   const [listaDocumentosLocal, setListaDocumentosLocal] = useState([]);
@@ -68,7 +69,7 @@ export default function TodaDocumentacionlist() {
       options: {
         customBodyRender: (value, tableMeta) => (
           tableMeta.rowData[9] ? 
-          <a href={`http://localhost:8002${tableMeta.rowData[9]}`}>Ver</a>
+          <a href={RUTA_SERVIDOR+`${tableMeta.rowData[9]}`}>Ver</a>
           :
           <></>
         ),
