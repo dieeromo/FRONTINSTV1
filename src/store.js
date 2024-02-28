@@ -10,6 +10,7 @@ import {
     userRegisterReducer,
     userListreducer,
     userDatosReducer, 
+    userDatos2Reducer
 } from './reducers/userReducers'
 
 import {
@@ -71,6 +72,7 @@ const reducer = combineReducers({
     userRegister:userRegisterReducer,
     userList : userListreducer ,
     userDatos: userDatosReducer,
+    userDatos2:userDatos2Reducer,
     //Criterios
     criteriosList :criteriosListReducer ,
     procesosEvaluacionList:procesosEvaluacionListReducer,
@@ -108,8 +110,14 @@ const reducer = combineReducers({
 const userInfoStorage = localStorage.getItem('userInfo') ?
     JSON.parse(localStorage.getItem('userInfo')) : null
 
+const userInfoDatosStorage = localStorage.getItem('userInfo_datos') ?
+    JSON.parse(localStorage.getItem('userInfo_datos')) : null
+
+
+
 const initialState = {
-    userLogin: { userInfo: userInfoStorage }
+    userLogin: { userInfo: userInfoStorage },
+    userDatos: { userInfo_datos: userInfoDatosStorage }
 }
 
 const middleware = [thunk]

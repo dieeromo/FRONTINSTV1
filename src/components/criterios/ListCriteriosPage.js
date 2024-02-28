@@ -12,10 +12,9 @@ import { useSelect } from '@mui/base';
 export default function ListCrietriosPage(){
     const criterios =  SelectorCriterio()
     // PRUBA
-    const userDatos = useSelector(state => state.userDatos)
-    const {error,loading,userInfo_datos} = userDatos
+
     console.log("criterios")
-    console.log(userInfo_datos)
+   
 
 
 
@@ -33,7 +32,7 @@ export default function ListCrietriosPage(){
 
     return(
         <>
-        <Navbar_acreditacion/>
+        {/* <Navbar_acreditacion/> */}
         <div>
             <h5 className="text-4xl font-bold text-center text-indigo-800">
                 Criterios

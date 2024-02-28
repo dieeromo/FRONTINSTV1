@@ -21,11 +21,56 @@ import {
     USER_DATOS_FAIL,
     USER_DATOS_RESET,
 
+    USER_DATOS_REQUEST2,
+    USER_DATOS_SUCCESS2,
+    USER_DATOS_FAIL2,
+    USER_DATOS_RESET2,
+
     USER_LIST_REQUEST,
     USER_LIST_SUCCESS,
     USER_LIST_FAIL,
     USER_LIST_RESET,
 } from '../constants/userConstants'
+
+
+export const userDatosAction2 = () => async (dispatch, getState) => {
+    try {
+        dispatch({ type: USER_DATOS_REQUEST2 })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+        const config = {
+            headers: {
+                //'Content-Type': 'application/json',
+                Authorization: `JWT ${userInfo.access}`
+            }
+           
+        }
+
+        const { data } = await axios.get(RUTA_SERVIDOR + `/auth/users/me/`, config);
+
+        dispatch({
+            type: USER_DATOS_SUCCESS2,
+            payload: data
+        })
+        console.log('user action 2')
+
+        localStorage.setItem('userInfo_datos', JSON.stringify(data))   // ojo esta linea fue agregada
+        console.log(data)
+
+    } catch (error) {
+        console.log('user action 2 error')
+        dispatch({
+            type: USER_DATOS_FAIL2,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+
+    }
+}
+
 
 export const userDatosAction = () => async (dispatch, getState) => {
     try {
@@ -51,6 +96,10 @@ export const userDatosAction = () => async (dispatch, getState) => {
             type: USER_DATOS_SUCCESS,
             payload: data
         })
+      console.log('user   userDatosAction')
+
+        //localStorage.setItem('userInfo_datos', JSON.stringify(data))   // ojo esta linea fue agregada
+        
 
     } catch (error) {
         dispatch({

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout, userDatosAction } from '../../actions/userActions';
-import { useEffect } from 'react';
+import { logout} from '../../actions/userActions';
+
 import { useNavigate} from 'react-router-dom';
 
 export default function Navbar_inicio() {
@@ -18,11 +18,6 @@ export default function Navbar_inicio() {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
-
-  useEffect(() => {
-
-    dispatch(userDatosAction());
-  }, [dispatch]);
 
 
   const userDatos = useSelector(state => state.userDatos);

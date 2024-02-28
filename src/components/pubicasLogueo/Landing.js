@@ -4,9 +4,7 @@ import Navbar_inicio from '../comunes/Navbar_inicio'
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
-import { userDatosAction } from '../../actions/userActions'
 
 export default function Landing() {
 
@@ -14,18 +12,17 @@ export default function Landing() {
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-        dispatch(userDatosAction())
-    }, [dispatch])
+
     const userDatos = useSelector(state => state.userDatos)
     const { error, loading, userInfo_datos } = userDatos
-    const [rolDocente, setRolDocente] = useState('false');
-    //console.log(userInfo_datos)
+
+
+
     let tempo_user = false
 
   if (userInfo_datos){
     if (userInfo_datos.is_docente){
-        //setRolDocente(true)
+
         tempo_user = true
   }
 }
@@ -60,7 +57,7 @@ export default function Landing() {
                             onClick={handleCardClick_acreditacion}
                         >
                             <h2 className="text-xl font-semibold text-dark">Acreditación</h2>
-                            <p className="text-Black">Sistema de autoevaluación y acreditacion</p>
+                            <p className="text-Black">Sistema de autoevaluación y acreditación</p>
                         </div>
                         :
                         <>

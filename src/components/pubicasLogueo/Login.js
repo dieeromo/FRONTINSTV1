@@ -6,29 +6,62 @@ import Messages from '../comunes/Messages';
 import Loader from '../comunes/Loader';
 import Navbar_inicio from '../comunes/Navbar_inicio';
 
+import {userDatosAction2 } from '../../actions/userActions'   //OOOJO
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
-  const { error, loading, userInfo } = userLogin;
-  console.log('user info *****')
-  console.log(userInfo)
+ const { error, loading, userInfo } = userLogin;
+  
 
-  const navigate = useNavigate();
-  const path = '/';
-  const isLoggedIn = userInfo && userInfo.access;
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate(path);
-    }
-  }, [isLoggedIn, navigate]);
+ const navigate = useNavigate();
+ const path = '/';
+ let tempo = false
+ if(userInfo){
+     if(userInfo.access){
+         tempo = true
+     }
+ }else{
+     tempo = false
+ }
+
+
+
+ useEffect(() => {
+  if (userInfo) {
+      console.log("este es el mensaje")
+      console.log("USER INFO")
+      console.log(userInfo.user_name)
+      console.log("USER LOGIN")
+      console.log(userLogin)
+      if(tempo){
+          navigate(path);
+      }
+      console.log(error)
+      
+  }
+}, [userInfo]);
+
+
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
+    console.log('despacaha user action 2')
+
+    setTimeout(5500)
+    dispatch(userDatosAction2 )
+    setTimeout(5500)
+    console.log('despacaha user action 2 ***')
+
+  
+
+    
+    
   };
 
   return (

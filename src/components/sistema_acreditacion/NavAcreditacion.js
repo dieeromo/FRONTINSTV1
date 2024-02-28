@@ -8,6 +8,8 @@ import { useNavigate} from 'react-router-dom';
 export default function NavAcreditacion() {
   const navigate = useNavigate();
   const path = `/login`;
+
+  const dispatch = useDispatch();
  
   const logoutHandler = () => {
     dispatch(logout());
@@ -16,26 +18,17 @@ export default function NavAcreditacion() {
 
 
 
-  const dispatch = useDispatch();
+
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
 
-  useEffect(() => {
-
-    dispatch(userDatosAction());
-  }, [dispatch]);
 
 
-  const userDatos = useSelector(state => state.userDatos);
-  const { error: userError, loading: userLoading, userInfo_datos } = userDatos;
+ 
+
+  let isLoggedIn = true;
 
 
-
-  let isLoggedIn = false;
-
-  if (userInfo && userInfo.access) {
-    isLoggedIn = true;
-  }
 
 
 
@@ -71,7 +64,7 @@ export default function NavAcreditacion() {
           )}
         </div>
         <div className="flex items-center">
-          <span className="text-white text-xl mr-4" >{userInfo_datos? <>{userInfo_datos.first_name }</>: <></>}</span>
+          <span className="text-white text-xl mr-4" >nombre</span>
           
           {isLoggedIn ? (
             <button

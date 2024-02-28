@@ -19,11 +19,43 @@ import {
     USER_DATOS_FAIL,
     USER_DATOS_RESET,
 
+    USER_DATOS_REQUEST2,
+    USER_DATOS_SUCCESS2,
+    USER_DATOS_FAIL2,
+    USER_DATOS_RESET2,
+
     USER_LIST_REQUEST,
     USER_LIST_SUCCESS,
     USER_LIST_FAIL,
 
 } from '../constants/userConstants'
+
+
+export const userDatos2Reducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_DATOS_REQUEST2:
+            //console.log("request")
+            return { loading: true}
+            
+
+        case USER_DATOS_SUCCESS2:
+            //console.log("succes")
+            return { loading: false, userInfo_datos2: action.payload }
+
+        case USER_DATOS_FAIL2:
+            //console.log("fail")
+            return { loading: false,  error: action.payload }
+
+        case USER_DATOS_RESET2:
+            //console.log("reset")
+            return {}
+
+        default:
+            //console.log("default")
+            return state
+    }
+}
+
 
 export const userDatosReducer = (state = {userInfo_datos:[]}, action) => {
     switch (action.type) {

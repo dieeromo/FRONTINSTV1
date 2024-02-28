@@ -21,7 +21,12 @@ import Pruebascarga from './components/pruebas/Pruebascarga'
 
 import BibliotecaLanding from './components/biblioteca/BibliotecaLanding'
 import RegisterObras from './components/biblioteca/RegisterObras'
+
+
+
+
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -38,9 +43,7 @@ function App() {
         <Route path='/documentos_acreditacion/list/:id' element={<  List_documentosAcreditacion />} />
         <Route path='/documentos_acreditacion/subir_archivo/:id/:id_evidencia/' element={<  CargaDocumentoAcreditacion />} />
         <Route path='/documentos_acreditacion/all/' element={<  TodaDocumentacionList />} />
-        <Route path='/pendientes/docentes/acreditacion' element={<  PendienteDocentes />} />
-
-
+        <Route path='/pendientes/docentes/acreditacion' element={<  PendienteDocentes />}  />
 
         <Route path='/pruebas/list' element={<PruebasList />} />
         <Route path='/pruebas/register' element={<  PruebasRegister />} />
