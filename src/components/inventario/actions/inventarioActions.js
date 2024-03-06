@@ -24,7 +24,7 @@ import {
 import { RUTA_SERVIDOR } from '../../../ApiRoutes'
 import axios from 'axios'
 
-export const createInventarioAction = (cod_unico, cod_senescyt, cod_instituto, tipo, descripcion, materiales, marca, modelo, serie, color, estado, ubicacion, asignado, observacion) => async (dispatch, getState) => {
+export const createInventarioAction = (cod_unico, cod_senescyt, cod_instituto, tipo, descripcion, materiales, marca, modelo, serie, color, estado, ubicacion, asignado, digitador, observacion) => async (dispatch, getState) => {
 
     try {
         dispatch({
@@ -59,6 +59,7 @@ export const createInventarioAction = (cod_unico, cod_senescyt, cod_instituto, t
                 'estado': estado,
                 'ubicacion': ubicacion,
                 'asignado': asignado,
+                'digitador': digitador,
 
                 'observacion': observacion
             },

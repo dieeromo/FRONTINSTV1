@@ -6,6 +6,10 @@ import {
     list_ubicacion_inventario_action
 } from '../actions/inventarioActions'
 
+import {
+    userDatosAction
+} from '../../../actions/userActions'
+
 
 export function SelectorTipoInventario() {
     const dispatch = useDispatch();
@@ -71,4 +75,23 @@ export  function SelectorUbicacionInventario() {
 
 
     return ( ubicacion_inventario )
+}
+
+export  function SelectorAsignadoInventario() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(userDatosAction())
+    }, [dispatch])
+
+    const asignado_inventario_List = useSelector(state => state.asignado_inventario_List)
+    const { error, loading, asignado_inventario_Lista } = asignado_inventario_List
+
+    const asignado_inventario = asignado_inventario_Lista.map((item) => ({
+        label: item.first_name+ ' ' + item.last_name,
+        value: item.id,
+    }))
+
+
+    return ( asignado_inventario )
 }
