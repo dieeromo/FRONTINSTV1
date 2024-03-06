@@ -7,7 +7,7 @@ import {listDocumentosAcreditacionDocenteAction} from '../actions/docPendientesC
 export  function SelectorDocPendientes_docentes(id) {
     const dispatch = useDispatch();
 
-    const userDatos =useSelector(state => state.userDatos)
+    const userDatos = useSelector(state => state.userDatos)
     const {error : errorUserdatos,loading:loadingUserdatos,userInfo_datos} = userDatos
     //console.log(userInfo_datos)
 
@@ -33,13 +33,19 @@ export  function SelectorDocPendientes_docentes(id) {
         label: item.material,
         value: item.id,
 
+        id:item.id,
         criterio : item.criterio,
         subCriterio: item.subCriterio,
         indicador: item.indicador,
         evidencia: item.evidencia,
         documento: item.documento,
+        responsable:item.responsable,
+        archivo : item.archivo,
+        digitador : item.digitador
     }))
 
+
+    
 
     return ( lista_documentos_pendientes )
 }

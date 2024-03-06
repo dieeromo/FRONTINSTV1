@@ -6,15 +6,12 @@ import React, { useState } from 'react';
 import { RUTA_SERVIDOR } from '../../ApiRoutes'
 
 
-export default function CargaDocumentoAcreditacion() {
+export default function CargaDocumentoAcreditacion_pendiente() {
 
 
-    const { id, id_evidencia } = useParams()
-    console.log('id_evidencia')
-    console.log(id_evidencia)
-    console.log(id)
+    const {id} = useParams()
 
-    const path = (`/documentos_acreditacion/list/${id_evidencia}`);
+    const path = (`/pendientes/docentes/acreditacion/`);
     const navigate = useNavigate();
 
     const userLogin = useSelector(state => state.userLogin);
@@ -41,11 +38,9 @@ export default function CargaDocumentoAcreditacion() {
             //const { data } = await axios.put('http://localhost:8002/documentos_acreditacion/subir_archivo/', formData, config)
             const { data } = await axios.put(RUTA_SERVIDOR + `/documentos_acreditacion/subir_archivo/`, formData, config);
         } catch (error) {
-            console.log(error)
+            
         }
         navigate(path)
-
-
 
     };
     return (

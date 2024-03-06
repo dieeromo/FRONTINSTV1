@@ -20,10 +20,6 @@ export default function NavAcreditacion() {
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
 
-  useEffect(() => {
-
-    dispatch(userDatosAction());
-  }, [dispatch]);
 
 
   const userDatos = useSelector(state => state.userDatos);

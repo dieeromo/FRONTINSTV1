@@ -34,12 +34,10 @@ export const userDatosAction = () => async (dispatch, getState) => {
         const {
             userLogin: { userInfo },
         } = getState()
-        //console.log('accion')
-        //console.log(`JWT ${userInfo.access}`)
+
 
         const config = {
             headers: {
-                //'Content-Type': 'application/json',
                 Authorization: `JWT ${userInfo.access}`
             }
            
@@ -51,6 +49,7 @@ export const userDatosAction = () => async (dispatch, getState) => {
             type: USER_DATOS_SUCCESS,
             payload: data
         })
+        localStorage.setItem('userInfo_datos', JSON.stringify(data))
 
     } catch (error) {
         dispatch({
@@ -63,42 +62,6 @@ export const userDatosAction = () => async (dispatch, getState) => {
     }
 }
 
-// export const userDatosAction = () => async (dispatch, getState) => {
-//     try {
-//         dispatch({ type: USER_DATOS_REQUEST })
-
-//         const {
-//             userLogin: { userInfo },
-//         } = getState()
-//         //console.log('accion')
-//         //console.log(`JWT ${userInfo.access}`)
-
-//         const config = {
-//             headers: {
-//                 //'Content-Type': 'application/json',
-//                 Authorization: `JWT ${userInfo.access}`
-//             }
-           
-//         }
-
-//         const { data } = await axios.get(RUTA_SERVIDOR + `/auth/users/me/`, config);
-
-//         dispatch({
-//             type: USER_DATOS_SUCCESS,
-//             payload: data
-//         })
-
-//     } catch (error) {
-//         dispatch({
-//             type: USER_DATOS_FAIL,
-//             payload: error.response && error.response.data.detail
-//                 ? error.response.data.detail
-//                 : error.message,
-//         })
-
-//     }
-// }
-
 
 
 
@@ -106,6 +69,7 @@ export const userDatosAction = () => async (dispatch, getState) => {
 
 export const logout = () => (disptach) => {
     localStorage.removeItem('userInfo')
+    localStorage.removeItem('userDatos')
     disptach({ type: USER_LOGOUT })
 }
 
