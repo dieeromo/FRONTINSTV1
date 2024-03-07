@@ -8,11 +8,12 @@ import {
     SelectorTipoInventario,
     SelectorEstadoInventario,
     SelectorUbicacionInventario,
-    SelectorAsignadoInventario,
 } from '../norender/Selectores'
 import { createInventarioAction } from '../actions/inventarioActions'
 import React, { useState } from 'react';
 import { userDatosAction } from '../../../actions/userActions'
+import { SelectorUsuarios } from '../../users/norender/Selectores';
+
 
 export default function RegisterInventarios() {
     const dispatch = useDispatch();
@@ -217,7 +218,7 @@ export default function RegisterInventarios() {
 
                     <div className="mb-4">
                         <label htmlFor="asignado" className="block text-lg font-semibold text-gray-500 shadow-md ">Asignado:</label>
-                        <Select options={SelectorAsignadoInventario()} onChange={(selectedOption) => setAsignado(selectedOption.value)}
+                        <Select options={SelectorUsuarios()} onChange={(selectedOption) => setAsignado(selectedOption.value)}
                             className='shadow-md' />
                     </div>
 

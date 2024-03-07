@@ -196,16 +196,17 @@ export const list_ubicacion_inventario_action = () => async (dispatch, getState)
         } = getState()
 
         const config = {
+
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `JWT ${userInfo.access}`
             }
         }
 
         const { data } = await axios.get(RUTA_SERVIDOR + `/inventario/list_ubicacion/`, config);
 
         dispatch({
-            type: ESTADO_INVENTARIO_LIST_SUCCESS,
+            type: UBICACION_INVENTARIO_LIST_SUCCESS,
             payload: data
         })
 
