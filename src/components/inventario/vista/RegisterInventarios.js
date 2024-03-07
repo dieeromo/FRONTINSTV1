@@ -7,7 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     SelectorTipoInventario,
     SelectorEstadoInventario,
-    //SelectorUbicacionInventario,
+    SelectorUbicacionInventario,
+    SelectorAsignadoInventario,
 } from '../norender/Selectores'
 import { createInventarioAction } from '../actions/inventarioActions'
 import React, { useState } from 'react';
@@ -22,11 +23,12 @@ export default function RegisterInventarios() {
     }, [dispatch])
     const userDatos = useSelector(state => state.userDatos)
     const { error, loading, userInfo_datos } = userDatos
-    console.log(userInfo_datos.first_name)
+    //console.log(userInfo_datos.first_name)
 
     const [tipo, setTipo] = useState('');
     const [estado, setEstado] = useState('');
-    //const [ubicacion, setUbicacion] = useState('');
+    const [ubicacion, setUbicacion] = useState('');
+    const [asignado, setAsignado] = useState('');
 
 
 
@@ -39,7 +41,6 @@ export default function RegisterInventarios() {
     const [modelo, set_modelo] = useState('');
     const [serie, set_serie] = useState('');
     const [color, set_color] = useState('');
-    //const [asignado, set_asignado] = useState(userInfo_datos.first_name);
     const [observacion, SetObservacion] = useState('');
 
 
@@ -54,7 +55,7 @@ export default function RegisterInventarios() {
         let finalSerie = serie !== '' ? serie : "NA";
         let finalobservacion = observacion !== '' ? observacion : "NA";
 
-        dispatch(createInventarioAction(codUnico, finalCodSenescyt, codInstituto, tipo, descripcion, materiales, finalMarca, finalModelo, finalSerie, color, estado, 2, userInfo_datos.id, finalobservacion));
+        dispatch(createInventarioAction(codUnico, finalCodSenescyt, codInstituto, tipo, descripcion, materiales, finalMarca, finalModelo, finalSerie, color, estado, ubicacion, asignado, userInfo_datos.first_name, finalobservacion));
 
         navigate('/inventario/landing');
     };
@@ -214,7 +215,17 @@ export default function RegisterInventarios() {
                             className='shadow-md' />
                     </div>
 
+                    <div className="mb-4">
+                        <label htmlFor="asignado" className="block text-lg font-semibold text-gray-500 shadow-md ">Asignado:</label>
+                        <Select options={SelectorAsignadoInventario()} onChange={(selectedOption) => setAsignado(selectedOption.value)}
+                            className='shadow-md' />
+                    </div>
 
+                    <div className="mb-4">
+                        <label htmlFor="ubicacion" className="block text-lg font-semibold text-gray-500 shadow-md ">Ubicación:</label>
+                        <Select options={SelectorUbicacionInventario()} onChange={(selectedOption) => setUbicacion(selectedOption.value)}
+                            className='shadow-md' />
+                    </div>
 
 
                     <div className="mb-4">
@@ -228,7 +239,7 @@ export default function RegisterInventarios() {
                             rows={2}
                             className="w-full  p-2 border rounded-md shadow-md "
                             placeholder="Ingrese una observacion"
-                            
+
                         />
                     </div>
 
