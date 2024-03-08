@@ -14,8 +14,7 @@ export default function ListCrietriosPage(){
     // PRUBA
     const userDatos = useSelector(state => state.userDatos)
     const {error,loading,userInfo_datos} = userDatos
-    console.log("criterios")
-    console.log(userInfo_datos)
+  
 
 
 

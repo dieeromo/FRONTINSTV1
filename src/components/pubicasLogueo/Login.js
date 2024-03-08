@@ -13,8 +13,6 @@ export default function Login() {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
-  console.log('user info *****')
-  console.log(userInfo)
 
   const navigate = useNavigate();
   const path = '/';

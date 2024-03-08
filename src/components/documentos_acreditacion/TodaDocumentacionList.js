@@ -90,6 +90,10 @@ export default function TodaDocumentacionlist() {
     {
       name:'digitador',
       label:'dig'
+    },
+    {
+      name:'id',
+      label:'id'
     }
 
   ];
